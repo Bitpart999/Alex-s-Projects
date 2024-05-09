@@ -1,0 +1,27 @@
+#include <iostream>
+#include <ctime>
+#include <random>
+using namespace std;
+
+int main() {
+    cout << "Welcome to the guessing game" << endl;
+    cout << "Enter a number between 1-10" << endl;
+    
+    srand(time(0)); 
+    int random = rand() % 10 + 1;
+
+    int user_input;
+    cin >> user_input;
+
+    while (user_input != random) {
+        if (user_input < random) {
+            cout << "Too low. Try again." << endl;
+        } else {
+            cout << "Too high. Try again." << endl;
+        }
+        cin >> user_input;
+    }
+    cout << "You guessed correctly!" << endl;
+
+    return 0;
+}
