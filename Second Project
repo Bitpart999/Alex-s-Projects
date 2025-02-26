@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <title>My Learning Experience p2 w/ tables</title>
+</head>
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1200px-HTML5_logo_and_wordmark.svg.png" height="100" alt="html logo">
+        <h1>My learning experience so far with html</h1>
+        <h2>Resources I've used:</h2>
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://www.springboard.com"> Springboard</a>
+                </li>
+                <li>
+                    <a href="https://developer.mozilla.org/en-US/">MMDN</a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main>
+        <section>
+            <h2>My personal thoughts</h2>
+            <p>Learning html so far has been a fairly easy process. While I have learned some parts of other programming languages, this I believe this would still be an easy process for someone who's brand new. I have enjoyed learning how everything works together and creates the general structure of a web page. It's interesting to see something you've looked at for years be so simple the whole time</p>
+        </section>
+            <h2>What I have learned</h2>
+            <p> I have learned copious amounts of entities, tags, attributes, ect. From forming a basic semantic layout of a webpage to adding special characters, all of it has been productive knowledge in my process. While I know there is still a lot to learn, I know this is still a big step in the right direction.<br>
+                <br>
+                Update #1: I have now been introduced into the world of tables. I have learned how to create a basic table using the &ldquo; &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, along with the headers, footers, and body.                
+            </p>
+
+            <table>
+                <caption>Alex's hours</caption>
+                <thead>
+                    <tr>
+                        <td>Action</td>
+                        <td>Hours</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Take child to school</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Work</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>Get child from school</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Relax Time</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Cook Dinner</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Sleep</td>
+                        <td>8</td>
+                    </tr>
+                </tbody>
+            </table>
+        <section>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <ul>
+            <li>
+                <a href="https://github.com/Bitpart999/Alex-s-Projects">Alex's Github</a>
+            </li>
+        </ul>
+    </footer> 
+</body>
+</html>
