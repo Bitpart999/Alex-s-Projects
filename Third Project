@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=>, initial-scale=1.0">
-    <title>My Learning Experience p2 w/ tables</title>
+    <title>My Learning Experience p3 w/ forms</title>
 </head>
 <body>
+    <!-- My header which is important in making a webpage -->
     <header>
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1200px-HTML5_logo_and_wordmark.svg.png" height="100" alt="html logo">
         <h1>My learning experience so far with html</h1>
         <h2>Resources I've used:</h2>
         <nav>
+            <!-- Simple list including links  -->
             <ul>
                 <li>
                     <a href="https://www.springboard.com"> Springboard</a>
@@ -24,7 +26,19 @@
     </header>
 
     <main>
+        <label><b>Sign up for more updates</b></label>
+        <form>
+        <!-- This section is used for the sign up area on the page -->
+            Email:<br>
+            <input type="email" placeholder="Email" name="Email"> <br>
+            Password:<br>
+            <input type="password" placeholder="Password" name="Password"><br>
+            I have read and accept the <a href=https://en.wikipedia.org/wiki/Terms_of_service>TOS</a> <input type="checkbox" required><br>
+            <button type="submit">Register</button><br>           
+        </form>
+
         <section>
+            <!-- This section is my personal thoughts -->
             <h2>My personal thoughts</h2>
             <p>Learning html so far has been a fairly easy process. While I have learned some parts of other programming languages, this I believe this would still be an easy process for someone who's brand new. I have enjoyed learning how everything works together and creates the general structure of a web page. It's interesting to see something you've looked at for years be so simple the whole time</p>
         </section>
@@ -33,7 +47,11 @@
                 <br>
                 Update #1: I have now been introduced into the world of tables. I have learned how to create a basic table using the &ldquo; &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, along with the headers, footers, and body.                
             </p>
+            <!-- Section used for the textarea code -->
+            <Label>Tell me what you have learned in HTML:</Label>
+            <textarea name=user-learning>Type here...</textarea> 
 
+            <!-- My table demonstration -->
             <table>
                 <caption>Alex's hours</caption>
                 <thead>
@@ -75,6 +93,7 @@
 
     </main>
 
+    <!-- Shows that I know how to make a footer which is important in making a webpage -->
     <footer>
         <ul>
             <li>

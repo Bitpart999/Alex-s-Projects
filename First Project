@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <title>My Learning Experience</title>
+</head>
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1200px-HTML5_logo_and_wordmark.svg.png" height="100" alt="html logo">
+        <h1>My learning experience so far with html</h1>
+        <h2>Resources I've used:</h2>
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://www.springboard.com"> Springboard</a>
+                </li>
+                <li>
+                    <a href="https://developer.mozilla.org/en-US/">MMDN</a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main>
+        <section>
+            <h2>My personal thoughts</h2>
+            <p>Learning html so far has been a fairly easy process. While I have learned some parts of other programming languages, this I believe this would still be an easy process for someone who's brand new. I have enjoyed learning how everything works together and creates the general structure of a web page. It's interesting to see something you've looked at for years be so simple the whole time</p>
+        </section>
+            <h2>What I have learned</h2>
+            <p> I have learned copious amounts of entities, tags, attributes, ect. From forming a basic semantic layout of a webpage to adding special characters, all of it has been productive knowledge in my process. While I know there is still a lot to learn, I know this is still a big step in the right direction. </p>
+        <section>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <ul>
+            <li>
+                <a href="http://127.0.0.1:3000/firstProject.html">The link to this page</a>
+            </li>
+        </ul>
+    </footer> 
+</body>
+</html>
