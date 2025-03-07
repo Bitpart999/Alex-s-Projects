@@ -1,0 +1,76 @@
+/* Background color */
+body {
+  background-color: #cee0fc
+}
+
+/* Image border that didn't work */
+body > img {
+  border-color: 6px solid black;
+}
+
+/* h1 shadow, color, and underline */
+h1 {
+  text-shadow: 2px 2px 2px ;
+  text-decoration: underline 2px;
+  color: rgb(51, 51, 51);
+  font-size: 70px;
+}
+
+/* Aligning my text fromt he contact me to the middle  */
+main {
+  text-align: center;
+}
+
+/* tried to align my table to the middle as well but realized I needed to grab it from the parent value first which is listed below */
+table {
+  text-align: center;
+}
+
+/* chose what font-family to use, very simple and warming font */
+Html {
+  font-family: domine;
+  
+}
+
+/* changed the size, underline, and color of the lables in the contact me section */
+main > label {
+  font-size: 25px;
+  text-decoration: underline;
+  color: rgb(217, 137, 137)
+}
+
+/* aligned the table to the middle with some extra added things  */
+main > table {
+  margin: 0 auto;           
+  text-align: center;       
+  border-collapse: collapse; 
+}
+
+/* changed all the sections of paragraphs to onyl span out 50 percent of the page to give it a fuller look and make the font size 18px */
+p {
+  max-width: 50%;
+  font-size: 18px;
+}
+
+/* changed all the h2's to be bold with a font size of 30px */
+h2 {
+  font-weight: 999;
+  font-size: 30px;
+}
+
+/* attempted to make the image at the top of the screen aligned to the middle (unsuccessful) hopefully will learn more about wrapping images later */
+body > img {
+  width: 300px;
+  text-align: center;
+}
+
+/* made the submit button under the contact me have a shadow to give it more life */
+main > button {
+  text-shadow: .5px .5px .5px rgb(66, 84, 202)
+}
+
+/* made the lables in the contact me section have an underline as well as a line spacing to stretch them further apart to not look too jumbled */
+main > form > label {
+  text-decoration: underline;
+  line-height: 2
+}
