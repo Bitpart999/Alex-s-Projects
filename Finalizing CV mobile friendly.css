@@ -1,0 +1,236 @@
+/* Global Reset */
+html, body {
+  margin: 10px;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #2d2d2d;
+  color: #ffffff;
+  font-family: "Courgette", cursive;
+  overflow-x: hidden;
+}
+
+@media (max-width: 480px) {
+  /* Flexbox to align image and h1 vertically */
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* h1 positioning with dynamic margin */
+  h1 {
+    margin-top: 15px; /* Base margin for small screens */
+    position: relative;
+    font-size: 3em; /* Optional: Adjust size for smaller screens */
+    top: 3em;
+  }
+
+  .profile-img {
+    width: 200px; /* Optional: Adjust the image size */
+    margin-bottom: 10px; /* Optional: Controls space below image */
+    position: relative;
+    top: 1em;
+  }
+
+  /* ContactInfo alignment */
+  .ContactInfo {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-end;
+    width: 100%; /* Make ContactInfo span the entire width */
+    padding: 1em;
+    align-items: flex-start; /* Align left by default */
+  }
+
+  .ContactInfo div {
+    margin-bottom: 1em; /* Ensure some space between each contact info item */
+    word-wrap: break-word; /* Prevent overflow for long email or phone numbers */
+  }
+
+  /* To ensure text fits on small screens */
+  .ContactInfo a, .ContactInfo p {
+    word-break: break-word; /* Break long words (like emails or long phone numbers) */
+    white-space: normal; /* Allow wrapping */
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  /* For medium-sized screens (e.g., tablets) */
+  h1 {
+    margin-top: 30px; /* More space for medium screens */
+  }
+
+  .profile-img {
+    width: 250px; /* Slightly bigger image on tablets */
+    margin-bottom: 15px;
+  }
+
+  /* ContactInfo alignment */
+  .ContactInfo {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-end;
+    width: 100%; /* Make ContactInfo span the entire width */
+    padding: 1em;
+    align-items: flex-start;
+  }
+
+  .ContactInfo div {
+    margin-bottom: 1em; /* Ensure some space between each contact info item */
+    word-wrap: break-word;
+  }
+
+  .ContactInfo a, .ContactInfo p {
+    word-break: break-word;
+    white-space: normal;
+  }
+}
+
+@media (min-width: 769px) {
+  /* For larger screens (e.g., desktops) */
+  h1 {
+    margin-top: 50px; /* Even more space for larger screens */
+  }
+
+  .profile-img {
+    width: 300px; /* Standard size for the image */
+    margin-bottom: 20px; /* Space below image */
+  }
+
+  /* ContactInfo alignment */
+  .ContactInfo {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-end;
+    width: 100%;
+    padding: 1em;
+    align-items: flex-start; /* Left-align on desktop */
+  }
+
+  .ContactInfo div {
+    margin-bottom: 1em; /* Ensure space between each contact info item */
+  }
+
+  .ContactInfo a, .ContactInfo p {
+    word-break: break-word;
+    white-space: normal;
+  }
+}
+
+/* Image on the left side with border-radius */
+body > img {
+  border-radius: 100%; /* Rounded corners for the image */
+  border: 3px solid black; /* Thinner border around the image */
+  width: 300px;
+  /* position: absolute;
+  top: 90px;
+  left: 50px;  commented this out because it was affecting my mobile display*/ 
+  display: inline-block; /* Ensures the image stays inline with text */
+}
+
+/* h1 styling */
+h1 {
+  color: #4f748a; /* Darker color for the header */
+  font-family: "Courgette", cursive;
+  font-size: 6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Section margin */
+section {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  text-indent: 30px;
+}
+
+/* Main content styling */
+main {
+  text-align: center;
+  border: solid black 5px;
+  padding: 1em;
+  background: rgb(48, 50, 61);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Table styling */
+table {
+  text-align: center;
+  margin: 10px auto;
+  box-sizing: border-box;
+}
+
+/* Labels in the contact section */
+main > label {
+  font-size: 3em;
+  text-decoration: underline;
+  color: rgb(217, 137, 137);
+}
+
+/* Form inside main */
+main > form {
+  font-size: 24px;
+  border-collapse: collapse;
+}
+
+/* Submit button styling */
+main > button {
+  text-shadow: .5px .5px .5px rgb(66, 84, 202);
+}
+
+/* Paragraph styling */
+p {
+  max-width: 50%;
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Styling for h2 */
+h2 {
+  font-weight: bold;
+  font-size: 36px;
+  padding-bottom: 1em;
+  padding-left: .5em;
+  border-left: solid black 7px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Links without underlines */
+a {
+  text-decoration: none;
+}
+
+/* Education section */
+.Education {
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* ContactInfo styling */
+.ContactInfo {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: flex-end;
+  width: 100%; /* Make ContactInfo span the entire width */
+  padding: 1em;
+  align-items: flex-start;
+}
+
+/* Summary paragraph styling */
+.Summary p {
+  text-indent: 10px;
+  padding-left: 10px
+}
+
+/* Unordered list font size */
+ul {
+  font-size: 24px;
+}
