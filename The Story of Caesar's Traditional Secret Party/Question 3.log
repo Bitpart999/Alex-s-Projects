@@ -1,0 +1,7 @@
+ Console was cleared
+let friendName = 'Brutus'; // This should be let because the party location could change 
+let shiftLetBy = 3; // const because its going to always be changed by the same number
+let encLocation = "gntrd"; // let because the location could change
+let decLocation = "house"; // same as the encrypted location, let allows the location to change
+let isSafe = false; // let becauses this could change
+undefined

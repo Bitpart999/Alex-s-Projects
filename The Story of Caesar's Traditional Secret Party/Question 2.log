@@ -1,0 +1,8 @@
+VM580:1 Console was cleared
+undefined
+let friendName = 'Brutus'; //string
+let shiftLetBy = 3; // number
+let encLocation = "gntrd"; // string
+let decLocation = "house"; // string
+let isSafe = false; // boolean
+undefined
