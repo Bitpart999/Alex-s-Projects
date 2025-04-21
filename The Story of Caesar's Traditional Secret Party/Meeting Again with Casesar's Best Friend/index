@@ -1,0 +1,21 @@
+const friend = "BRUTUS"
+const shiftValue = 3;
+
+const alphabet = "abcdefghijklmnopqrstuvwxyz"; //Step 1
+
+let newName = "";                                                         //Step 2
+
+for (let i = 0; i < friend.length; i++) {                                 //Step 2
+    const currentLetter = friend[i].toLowerCase();                        //Step 2
+    const currentIndex = alphabet.indexOf(currentLetter);                 //Step 2
+    const newIndex = (currentIndex + shiftValue) % alphabet.length;       //Step 2
+    let newLetter = alphabet[newIndex];                                   //Step 2
+
+    newName += newLetter;                                                 //Step 2
+
+}
+console.log(newName.toUpperCase())                                        //Step 2
+
+//Question 1: Reduced the amount of code needed to encrypt all the letters
+
+//Question 2: It makes the alphabet wrap back to the beginning once its past z. It helps if there was a letter than went past it wouldn't just leave it blank and not encrypt it.
