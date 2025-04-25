@@ -1,0 +1,45 @@
+ function fizzBuzz(n) {
+   for(let i = 1; i <= n; i++) {
+     if(i % 3 === 0 && i % 5 === 0) {
+       console.log(i, 'FizzBuzz')
+     }
+     else if(i % 3 === 0) {
+       console.log(i, 'Fizz');
+     }
+     else if(i % 5 === 0) {
+       console.log(i, 'Buzz');
+     }
+     else if(i % 3 !== 0 && i % 5 !== 0) {
+       console.log(i);
+     }
+     else {
+       console.log('ERROR');
+     }
+   }
+ }
+
+function letterOccurance(word) {
+  if (typeof word !== 'string') {
+    console.error('ERROR');
+    return;
+  }
+
+  word = word.toLowerCase();
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  const letterCounts = {};
+
+  for (let i = 0; i < word.length; i++) {
+    const letter = word[i];
+    if (alphabet.includes(letter)) { // Only process letters in the alphabet
+      if (letterCounts[letter]) {
+        letterCounts[letter]++;
+      } else {
+        letterCounts[letter] = 1;
+      }
+    }
+  }
+
+  for (const [letter, count] of Object.entries(letterCounts)) {
+    console.log(letter, 'occurs', count, 'times');
+  }
+}
