@@ -1,0 +1,134 @@
+html, body {
+  height: 100% !important;  /* Ensure the body and html elements take up the full viewport height */
+  margin-top: 10px !important;     /* Remove default margin */
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+body {
+  background-color: #2d2d2d; /* Dark gray background */
+  color: #ffffff; /* White text for contrast */
+  font-family: "Courgette", cursive; /* Default font for general text */
+  border-top: solid black 5px;
+  /* border-left: solid black 5px;
+  border-right: solid black 5px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+
+/* Image on the left side with border-radius */
+body > img {
+  border-radius: 2em; /* Rounded corners for the image */
+  border: 3px solid black; /* Thinner border around the image */
+  /* margin: 1.5em; Margin for spacing */
+  display: inline-block; /* Ensures the image stays inline with text */
+  margin-left: 0; /* Aligns the image to the left */
+  margin-right: auto; /* Prevents any right margin */
+  width: 300px
+}
+
+/* h1 shadow, color, and underline */
+h1 {
+  color: #4f748a; /* Darker color for the header */
+  font-family: "Courgette", cursive;
+  font-size: 6em;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+  /* padding-bottom: 5px; */
+}
+
+section {
+  /* border-right: solid black 5px;
+  border-left: solid black 5px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Aligning my text from the contact me to the middle */
+main {
+  text-align: center;
+  border: solid black 5px;
+  padding: 1em;
+  background: rgb(48, 50, 61);
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+/* Table centered */
+table {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Chose font-family to use */
+Html {
+  font-family: domine;
+}
+
+/* Changed size, underline, and color of labels in the contact me section */
+main > label {
+  font-size: 3em;
+  text-decoration: underline;
+  color: rgb(217, 137, 137)
+}
+
+/* Centered table and collapse borders */
+main > table {
+  margin: 0 auto;           
+  text-align: center;       
+   
+}
+
+/* Set max-width of paragraphs and font-size */
+p {
+  max-width: 50%;
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Styling for h2 */
+h2 {
+  font-weight: 999;
+  font-size: 36px;
+  padding-bottom: 1em;
+  /* border-right: solid black 5px; */
+  border-left: solid black 7px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+/* Styling for submit button */
+main > button {
+  text-shadow: .5px .5px .5px rgb(66, 84, 202)
+}
+
+/* Labels with underline and line-height for spacing */
+main > form > label {
+  text-decoration: underline;
+  line-height: 2;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+main > form {
+  font-size: 24px;
+  border-collapse: 0;
+}
