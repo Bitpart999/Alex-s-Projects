@@ -1,0 +1,72 @@
+// ✅ Task 1: Declare The Task Array and The Interval ID
+let oneTimeTasks = [];
+let monitoringTaskId = null;
+
+// ✅ Task 2: Add One-Time Task Function
+function addOneTimeTask(func, delay) {
+  oneTimeTasks.push({ func, delay });
+}
+
+// ✅ Task 3: Run One-Time Tasks Function
+function runOneTimeTasks() {
+  for (const task of oneTimeTasks) {
+    setTimeout(task.func, task.delay);
+  }
+}
+
+// ✅ Task 4: Start Monitoring Function
+function startMonitoring() {
+  monitoringTaskId = setInterval(() => {
+    console.log("🔍 Monitoring space station conditions...");
+  }, 3000); // every 3 seconds
+}
+
+// ✅ Task 5: Stop Monitoring Function
+function stopMonitoring() {
+  if (monitoringTaskId !== null) {
+    clearInterval(monitoringTaskId);
+    console.log("🛑 Monitoring stopped.");
+  }
+}
+
+// ✅ Task 6: Start Countdown Function
+function startCountdown(duration) {
+  let timeLeft = duration;
+  const countdownId = setInterval(() => {
+    if (timeLeft > 0) {
+      console.log(`🚀 Launching in ${timeLeft}...`);
+      timeLeft--;
+    } else {
+      clearInterval(countdownId);
+      console.log("🔥 Liftoff!");
+    }
+  }, 1000);
+}
+
+// ✅ Task 7: Schedule Pre-Launch Activities and Launch
+function scheduleMission() {
+  console.log("🛰️ Initiating mission schedule...");
+
+  addOneTimeTask(() => {
+    console.log("✅ Pre-launch system check complete.");
+  }, 1000);
+
+  addOneTimeTask(() => {
+    console.log("📡 Starting monitoring systems.");
+    startMonitoring();
+  }, 2000);
+
+  addOneTimeTask(() => {
+    console.log("⛔ Ending monitoring before launch.");
+    stopMonitoring();
+  }, 10000);
+
+  addOneTimeTask(() => {
+    console.log("🧨 Countdown starting...");
+    startCountdown(5);
+  }, 11000);
+
+  runOneTimeTasks();
+}
+
+scheduleMission(); // Starts the mission
