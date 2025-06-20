@@ -1,0 +1,53 @@
+1. Installation
+
+- https://desktop.github.com/
+
+2. Configuration
+
+- Open GitHub Desktop and go to `File` > `Options` (on Windows) or `GitHub Desktop` > `Preferences` (on macOS).
+- Navigate to the `Accounts` tab to sign in with your GitHub account.
+- Switch to the `Git` tab to configure your global Git username and email. These settings will apply to all your repositories.
+
+3. Initialization
+
+- In GitHub Desktop, click on `File` > `New Repository`.
+- Name the repository `GitAdventure`.
+- Choose a local path where the repository will be stored.
+- Click `Create Repository`.
+- Right-click on the repository in GitHub Desktop and select `Open in Explorer` (Windows) or `Show in Finder` (macOS).
+
+4. Staging and Committing
+
+- In the repository folder, create a new text file named `journey.txt`. Open it, add the text "`Embarking on my journey to master Git.`" and save the file.
+- Return to GitHub Desktop; it will automatically detect the new file.
+- In the Changes tab, check the box next to `journey.txt` to stage it.
+- Enter a commit message, such as "`Initial commit with journey.txt`", and click `Commit to main`.
+
+5. Deletion
+
+- Create `temp.txt` in the repository folder with the content: "`This file is meant to be deleted.`"
+- Stage and commit the addition in GitHub Desktop with the message `Prepare temp.txt for deletion`.
+- Delete `temp.txt` from the repository folder.
+- GitHub Desktop will detect the deletion. Stage the change and commit it with the message "`Delete temp.txt`".
+
+6. Renaming
+
+- Rename `journey.txt` to `adventure.txt` and update its content to: "`My journey evolves into an adventure with Git.`".
+- GitHub Desktop will recognize the rename and content change. Stage and commit the changes with the message "`Rename journey.txt to adventure.txt and update `".
+
+7. Ignoring Files
+
+- In the repository folder, create a `.gitignore` file. Add `*.log` to ignore all `.log` files.
+- Stage and commit the `.gitignore` file in GitHub Desktop with the message "`Add .gitignore to ignore log files`".
+- Create a dummy `.log` file, `test.log`, in the repository folder.
+- GitHub Desktop should not list this file under Changes due to the `.gitignore` rule.
+
+8. Diving Deeper
+
+- Add "`Exploring the depths of Git commands and their powers.`" to `adventure.txt`.
+- Stage and commit the update in GitHub Desktop with the message "`Update adventure.txt with exploration insights`".
+
+9. History and Restoration
+
+- In GitHub Desktop, you can view the repository's history in the `History` tab.
+- GitHub Desktop does not directly support reverting a file to a previous commit. You would typically revert changes by manually editing the file to its previous state and committing the change.
