@@ -1,0 +1,265 @@
+/* ---------- constants ---------- */
+const API_URL = "https://rithm-jeopardy.herokuapp.com/api/";
+const NUMBER_OF_CATEGORIES = 6;
+const NUMBER_OF_CLUES_PER_CATEGORY = 5;
+
+let categories = [];
+let activeClue = null;
+let activeClueMode = 0; // 0: No clue active, 1: Question shown, 2: Answer shown
+let isPlayButtonClickable = true;
+
+// This will hold the HTML elements after they are created
+let $playButton;
+let $categoriesHead;
+let $cluesBody;
+let $activeClueDiv;
+
+// Function to initialize the game board HTML structure
+function initializeGameStructure() {
+    // Clear existing body content to ensure a clean slate
+    $("body").empty();
+
+    // Create the main game container
+    const $gameContainer = $("<div>").attr("id", "game-container");
+    $("body").append($gameContainer);
+
+    // Add title
+    $gameContainer.append($("<h1>").text("Jeopardy!"));
+
+    // Add play button
+    $playButton = $("<button>").attr("id", "play").text("Start Game");
+    $gameContainer.append($playButton);
+
+    // Add table structure
+    const $table = $("<table>");
+    $categoriesHead = $("<thead>").attr("id", "categories");
+    $cluesBody = $("<tbody>").attr("id", "clues"); // This is where the ID needs to be!
+    $table.append($categoriesHead, $cluesBody);
+    $gameContainer.append($table);
+
+    // Add active clue display area
+    $activeClueDiv = $("<div>").attr("id", "active-clue");
+    $gameContainer.append($activeClueDiv);
+
+    // Attach event listeners to the newly created elements
+    $playButton.on("click", handleClickOfPlay);
+    $activeClueDiv.on("click", handleClickOfActiveClue);
+
+    // Call setupTheGame initially to load the first game
+    setupTheGame();
+}
+
+
+/**
+ * Handles the click event for the "Play" or "Restart Game" button.
+ * Prevents multiple clicks while loading.
+ */
+function handleClickOfPlay() {
+    if (!isPlayButtonClickable) return; // Do nothing if not clickable
+    isPlayButtonClickable = false; // Disable button immediately
+    setupTheGame(); // Start setting up the game
+}
+
+/**
+ * Sets up the Jeopardy game board.
+ * Clears existing content, fetches new categories and clues,
+ * then fills the table.
+ */
+async function setupTheGame() {
+    // Use the stored jQuery objects for efficiency and accuracy
+    $cluesBody.empty(); // Clear clue rows
+    $categoriesHead.empty(); // Clear category headers
+    $activeClueDiv.html(""); // Clear active clue display
+    $playButton.text("Loading..."); // Update button text to indicate loading
+
+    const categoryIds = await getCategoryIds(); // Fetch category IDs
+    const categoryData = [];
+
+    // Fetch detailed data for each selected category
+    for (let id of categoryIds) {
+        const data = await getCategoryData(id);
+        if (data) {
+            categoryData.push(data); // Add valid category data
+        }
+    }
+
+    // If we don't have enough categories, show an error or retry
+    if (categoryData.length < NUMBER_OF_CATEGORIES) {
+        console.error("Not enough categories with sufficient clues found. Retrying or adjusting NUMBER_OF_CATEGORIES.");
+        $playButton.text("Error: Not Enough Categories. Click to Retry.");
+        isPlayButtonClickable = true;
+        return;
+    }
+
+    categories = categoryData; // Store the fetched categories
+    fillTable(categories); // Populate the game board
+    isPlayButtonClickable = true; // Re-enable the play button
+    activeClue = null; // Reset active clue state
+    activeClueMode = 0; // Reset active clue display mode
+    $playButton.text("Restart Game"); // Update button text
+}
+
+/**
+ * Fetches a list of category IDs from the API.
+ * Filters for categories with enough clues, shuffles them,
+ * and selects the required number.
+ * @returns {Promise<Array<number>>} A promise that resolves to an array of category IDs.
+ */
+async function getCategoryIds() {
+    const res = await axios.get(`${API_URL}categories?count=100`); // Fetch 100 categories
+    // Filter for categories that have at least NUMBER_OF_CLUES_PER_CATEGORY
+    const valid = res.data.filter(cat => cat.clues_count >= NUMBER_OF_CLUES_PER_CATEGORY);
+    // Shuffle valid categories and select the required number
+    const shuffled = valid.sort(() => 0.5 - Math.random()).slice(0, NUMBER_OF_CATEGORIES);
+    return shuffled.map(cat => cat.id); // Return only the IDs
+}
+
+/**
+ * Fetches detailed data for a specific category, including its clues.
+ * Filters clues for validity, sorts them by value, and limits to the required number.
+ * @param {number} categoryId - The ID of the category to fetch.
+ * @returns {Promise<Object|null>} A promise that resolves to the category data or null if not enough valid clues.
+ */
+async function getCategoryData(categoryId) {
+    const res = await axios.get(`${API_URL}category?id=${categoryId}`);
+    // Filter for clues that have a question and answer
+    const filteredClues = res.data.clues.filter(clue => clue.question && clue.answer);
+
+    // Assign values and initialize 'viewed' status *before* slicing and sorting
+    // This ensures consistent value assignment for sorting and display
+    const cluesWithValues = filteredClues.map((clue, idx) => ({
+        id: clue.id,
+        question: clue.question,
+        answer: clue.answer,
+        // Assign value. If clue.value is null/0, use (idx + 1) * 100.
+        // Ensure values are numbers for proper sorting.
+        value: clue.value && typeof clue.value === 'number' ? clue.value : (idx + 1) * 100,
+        viewed: false
+    }));
+
+    // Sort the clues by their assigned value.
+    // This is crucial to ensure $100, $200, $300, etc., appear in order.
+    cluesWithValues.sort((a, b) => a.value - b.value);
+
+    // Take only the required number of clues after sorting
+    const finalClues = cluesWithValues.slice(0, NUMBER_OF_CLUES_PER_CATEGORY);
+
+    if (finalClues.length < NUMBER_OF_CLUES_PER_CATEGORY) {
+        return null; // Return null if not enough valid and sorted clues
+    }
+
+    return {
+        id: res.data.id,
+        title: res.data.title,
+        clues: finalClues
+    };
+}
+
+/**
+ * Fills the Jeopardy game table with category headers and clue cells.
+ * @param {Array<Object>} categories - An array of category objects with their clues.
+ */
+function fillTable(categories) {
+    // Use the stored jQuery objects instead of re-selecting by ID
+    $categoriesHead.empty(); // Clear existing headers
+    $cluesBody.empty(); // Clear existing clue cells
+
+    // Create header row for categories
+    const $headerRow = $("<tr>");
+    for (let cat of categories) {
+        const $th = $("<th>").text(cat.title.toUpperCase());
+        $headerRow.append($th);
+    }
+    $categoriesHead.append($headerRow);
+
+    // Create rows for each clue value (5 rows as per NUMBER_OF_CLUES_PER_CATEGORY)
+    for (let row = 0; row < NUMBER_OF_CLUES_PER_CATEGORY; row++) {
+        const $tr = $("<tr>");
+        for (let col = 0; col < categories.length; col++) {
+            // Ensure the category and clue exist before trying to access properties
+            const clue = categories[col] && categories[col].clues ? categories[col].clues[row] : null;
+            const $td = $("<td>").addClass("clue");
+
+            if (!clue) {
+                // Handle cases where a clue might be missing (e.g., if a category didn't have enough clues after filtering)
+                // Make it unclickable and styled as viewed
+                $td.text("N/A").css({ backgroundColor: "#444", color: "#bbb" }).addClass("viewed").off("click");
+            } else if (clue.viewed) {
+                // If the clue has been viewed, style it accordingly and make it unclickable
+                $td.text("").addClass("viewed").css({ backgroundColor: "#222", cursor: "default" }).off("click");
+            } else {
+                // Display the clue's value and set its ID for later retrieval
+                $td.text(`$${clue.value}`).attr("id", `${categories[col].id}-${clue.id}`);
+            }
+
+            $tr.append($td);
+        }
+        $cluesBody.append($tr);
+    }
+
+    // Attach event listener to all valid clue cells that are not yet viewed
+    $(".clue:not(.viewed)").off("click").on("click", handleClickOfClue);
+}
+
+/**
+ * Handles the click event for a specific clue cell on the board.
+ * Displays the question, then the answer.
+ * @param {Event} evt - The click event object.
+ */
+function handleClickOfClue(evt) {
+    // If there's already an active clue being displayed, don't allow clicking another
+    if (activeClue) {
+        return;
+    }
+
+    const $target = $(evt.target);
+    // Extract categoryId and clueId from the cell's ID attribute
+    const [categoryId, clueId] = $target.attr("id").split("-").map(Number);
+
+    // Find the clicked clue in our 'categories' data structure
+    const category = categories.find(cat => cat.id === categoryId);
+    const clue = category ? category.clues.find(c => c.id === clueId) : null;
+
+    if (clue) {
+        activeClue = clue;
+        activeClueMode = 1; // Set mode to question shown
+
+        $activeClueDiv.text(clue.question); // Display the question
+        clue.viewed = true; // Mark the clue as viewed
+
+        // Update the UI of the clicked clue cell to reflect it's viewed
+        $target.text("").addClass("viewed").css({ backgroundColor: "#222", cursor: "default" }).off("click");
+    }
+}
+
+/**
+ * Handles the click event for the active clue display area.
+ * Cycles from question to answer, then clears the display.
+ */
+function handleClickOfActiveClue() {
+    if (!activeClue) return; // Do nothing if no clue is active
+
+    if (activeClueMode === 1) {
+        // If question is shown, display the answer
+        $activeClueDiv.text(activeClue.answer);
+        activeClueMode = 2; // Set mode to answer shown
+    } else if (activeClueMode === 2) {
+        // If answer is shown, clear the display and reset active clue state
+        $activeClueDiv.text("");
+        activeClue = null;
+        activeClueMode = 0;
+
+        // Check if all clues have been viewed to end the game
+        const allViewed = categories.every(cat => cat.clues.every(clue => clue.viewed));
+        if (allViewed) {
+            isPlayButtonClickable = true; // Make play button clickable again
+            $playButton.text("Play Again?"); // Change button text
+            $activeClueDiv.text("The End!"); // Display game over message
+        }
+    }
+}
+
+// Call this function when the document is ready to build the initial HTML structure
+$(document).ready(function() {
+    initializeGameStructure();
+});
