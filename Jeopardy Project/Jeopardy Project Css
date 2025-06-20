@@ -1,0 +1,193 @@
+/* Add this to your CSS file, ideally at the very top */
+:root {
+  --number-of-categories: 6; /* IMPORTANT: MUST MATCH your JS NUMBER_OF_CATEGORIES constant */
+}
+
+/* General Body Styles */
+body {
+  background-color: #1e1e2f;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Main Game Container (Ensure you have this div wrapping your game elements in HTML) */
+#game-container {
+    width: 95%; /* Adjust as needed, but 95% usually works well for overall responsiveness */
+    max-width: 1200px; /* Max width to prevent it from getting too wide on large screens */
+    margin: 0 auto; /* Center the container */
+    padding: 10px;
+}
+
+h1 {
+  margin-bottom: 0.8em;
+  font-size: 2.5rem;
+  color: #f0f0f0;
+}
+
+/* Play Button Styles */
+button#play {
+  padding: 0.7em 2em;
+  font-size: 1.1rem;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 1.5em;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button#play:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Table Styles */
+table {
+  width: 100%; /* Table spans the full width of its container */
+  margin: 0 auto;
+  border-collapse: collapse; /* Critical for overlapping borders and flush look */
+  table-layout: fixed; /* Ensures columns are equal width and respect th widths */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  border-spacing: 0; /* NEW: Explicitly remove spacing between cell borders */
+}
+
+/* Table Header and Data Cell Styles */
+th, td {
+  border: 2px solid #fff;
+  padding: 1em;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  word-wrap: break-word;
+  white-space: normal;
+  box-sizing: border-box; /* IMPORTANT: Ensures padding and border are included in the element's total width/height */
+}
+
+th {
+  background-color: #8d2ab5;
+  color: white;
+  font-size: 1.2rem;
+  height: 60px;
+  /* This is the key for equal column widths based on the number of categories */
+  width: calc(100% / var(--number-of-categories));
+}
+
+td {
+  background-color: #115ff4;
+  color: white;
+  cursor: pointer;
+  font-size: 1.6rem;
+  height: 100px;
+  transition: background-color 0.2s ease;
+  /* width: inherit; /* NEW: While not always strictly necessary with table-layout: fixed, can help */
+}
+
+td:hover {
+  background-color: #060ce9;
+}
+
+/* Viewed Clue Styles */
+.viewed {
+  background-color: #3b3b3b !important;
+  color: #999;
+  text-decoration: line-through;
+  cursor: default;
+}
+
+/* Active Clue Display Area */
+#active-clue {
+  background-color: #0000cc;
+  color: white;
+  margin-top: 40px;
+  padding: 25px;
+  font-size: 1.8rem;
+  width: 70%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  min-height: 100px;
+  display: flex; /* Use flexbox to center content vertically and horizontally */
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Ensure text is centered within the box */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#active-clue:hover {
+    background-color: #0000a0;
+}
+
+/* Utility Class for Hiding Elements */
+.disabled {
+  display: none;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  button#play {
+    font-size: 0.9rem;
+    padding: 0.6em 1.5em;
+  }
+
+  th {
+    font-size: 1rem;
+    height: 50px;
+    width: auto; /* Remove explicit width for smaller screens to allow more flexibility */
+  }
+
+  td {
+    font-size: 1.2rem;
+    height: 80px;
+    padding: 0.8em;
+  }
+
+  #active-clue {
+    font-size: 1.3rem;
+    padding: 20px;
+    width: 90%;
+    margin-top: 25px;
+    min-height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  th {
+    font-size: 0.8rem;
+    height: 40px;
+    padding: 0.5em;
+  }
+
+  td {
+    font-size: 1rem;
+    height: 60px;
+    padding: 0.5em;
+  }
+
+  #active-clue {
+    font-size: 1rem;
+    padding: 15px;
+    margin-top: 20px;
+    min-height: 60px;
+  }
+}
